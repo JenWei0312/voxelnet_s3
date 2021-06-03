@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  voxelnet:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        CLIENT_ID: ${CLIENT_ID} # from .env
+        CLIENT_SECRET: ${CLIENT_SECRET} #from .env
+
+    volumes:
+      - ${LOCAL_DATA_PATH}:/data
+    ports:
+      - "${PORT}:${PORT}"
+    #command: sh -c "dvc import https://github.com/JenWei0312/kitti.git data/train"
+    
+    command: sh -c "python3 train.py --alpha 1 --beta 10"

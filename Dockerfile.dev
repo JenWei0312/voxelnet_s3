@@ -1,0 +1,33 @@
+FROM python:3.6.13
+
+# Open CV Dependancies
+RUN apt-get update 
+RUN apt-get install -y \
+                  ffmpeg \
+                  libsm6 \
+                  libxext6
+# Install git                  
+RUN apt-get install -y git
+# Set working dir
+WORKDIR /code
+
+# Install packages
+COPY requirements*.txt /code/
+RUN pip3 install -r requirements.txt 
+
+# Copy code
+COPY ./src /code
+
+# For automatic download data via dvc
+#ADD . /app
+#VOLUME /voldata
+#WORKDIR /app
+
+# Download data
+#RUN dvc remote modify mystorage gdrive_client_id '${CLIENT_ID}'
+#RUN dvc remote modify mystorage gdrive_client_secret '${CLIENT_SECRET}'
+#RUN dvc pull
+
+# Init
+RUN python3 setup.py build_ext --inplace
+

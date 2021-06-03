@@ -1,0 +1,12 @@
+tensorflow==1.4.1
+numpy==1.16.4
+Cython==0.28
+opencv-python
+Shapely
+numba
+easydict
+matplotlib
+# Adding  dvc
+dvc
+# Adding gdrive
+dvc[gdrive]
