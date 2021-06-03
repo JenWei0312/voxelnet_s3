@@ -8,5 +8,6 @@ easydict
 matplotlib
 # Adding  dvc
 dvc
-# Adding gdrive
-dvc[gdrive]
+# for s3
+boto
+dvc[s3]
