@@ -19,14 +19,14 @@ RUN pip3 install -r requirements.txt
 COPY ./src /code
 
 # For automatic download data via dvc
-#ADD . /app
+ADD . /app
 #VOLUME /voldata
-#WORKDIR /app
+WORKDIR /app
 
 # Download data
-#RUN dvc remote modify mystorage gdrive_client_id '${CLIENT_ID}'
-#RUN dvc remote modify mystorage gdrive_client_secret '${CLIENT_SECRET}'
-#RUN dvc pull
+RUN dvc remote modify storage access_key_id '${KEY_ID}'
+RUN dvc remote modify storage secret_access_key '${SECRET_KEY}'
+RUN dvc pull
 
 # Init
 RUN python3 setup.py build_ext --inplace
