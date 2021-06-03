@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
       args:
-        CLIENT_ID: ${CLIENT_ID} # from .env
-        CLIENT_SECRET: ${CLIENT_SECRET} #from .env
+        KEY_ID: ${KEY_ID} # from .env
+        SECRET_KEY: ${SECRET_KEY} #from .env
 
     volumes:
       - ${LOCAL_DATA_PATH}:/data
